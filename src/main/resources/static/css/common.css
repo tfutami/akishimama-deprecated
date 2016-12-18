@@ -1,6 +1,6 @@
 body {
   padding-top: 50px;
-  margin-bottom: 4em;
+  margin-bottom: 3em;
 }
 
 .navbar-brand {
@@ -16,11 +16,6 @@ body {
     background-color: #9F8DC6;
 }
 
-.btn-default {
-    color: #fff;
-    background-color: #a9a9a9;
-    border-color: #a9a9a9;
-}
 
 #brand-logo {
     height : 100%;
@@ -31,17 +26,13 @@ html {
   position: relative;
 }
 
-hr {
-    margin-top : 0px;
-    margin-bottom : 0px;
-}
-
 footer {
-  padding-top : 20px;
-  bottom: 0;
-  height: 4em;
-  width: 100%;
-  position: absolute;
-  font-weight: bold;
-  text-align:center;
+    background-color: #9F8DC6;
+    bottom: 0;
+    height: 3em;
+    line-height: 3em;
+    width: 100%;
+    position: absolute;
+    color : #FFF;
+    text-align:center;
 }
