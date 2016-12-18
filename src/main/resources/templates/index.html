@@ -1,8 +1,36 @@
-<html>
+<html
+        lang="ja"
+        xmlns         = "http://www.w3.org/1999/xhtml"
+        xmlns:th      = "http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="layout">
 <head>
-    <title>あきしmama</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>トップページ</title>
+
+    <!-- 実際に実行する際はlayout.htmlを参照するのでここはthymeleafの設定を入れません。 -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"  />
+    <link href="../static/css/common.css" rel="stylesheet" />
 </head>
+
 <body>
-Hello, World.
+
+<div id="layout-root" layout:fragment="layout-content">
+    <div class="jumbotron">
+        <div class="container">
+            昭島のママのために<br />
+            妊娠・出産・子育てに関わる情報を発信します。<br />
+            皆様からの情報もお待ちしております。<br />
+        </div>
+    </div>
+    <div class="container">
+        <div class="padding-top text-center">
+            <a class="btn btn-default btn-lg btn-block">予防接種情報</a>
+        </div>
+    </div><!-- /.container -->
+</div>
 </body>
 </html>

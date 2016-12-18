@@ -1,0 +1,38 @@
+body {
+  padding-top: 50px;
+  margin-bottom: 3em;
+}
+
+.navbar-brand {
+    height : 50px;
+    padding : 0px 0px 0px 15px;
+}
+
+.padding-top {
+    padding-top : 20px;
+}
+
+.navbar-akishimama {
+    background-color: #9F8DC6;
+}
+
+
+#brand-logo {
+    height : 100%;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+    background-color: #9F8DC6;
+    bottom: 0;
+    height: 3em;
+    line-height: 3em;
+    width: 100%;
+    position: absolute;
+    color : #FFF;
+    text-align:center;
+}
