@@ -17,22 +17,10 @@
 <body>
 
 <div id="layout-root" layout:fragment="layout-content">
-    <div class="jumbotron">
-        <div class="container">
-            昭島のママのために<br />
-            妊娠・出産・子育てに関わる情報を発信します。<br />
-            皆様からの情報もお待ちしております。<br />
-        </div>
-    </div>
-    <div class="container">
-        <div class="padding-top text-center">
-            <a class="btn btn-default btn-lg btn-block" href="yobou">予防接種情報</a>
-        </div>
-
-        <ul>
-            <li th:each="friend:${friends}" th:text="${friend.name}">Friend</li>
-        </ul>
-    </div><!-- /.container -->
+    <form>
+        <input type="text" name="nickname" />
+        <button type="submit">submit</button>
+    </form>
 </div>
 </body>
 </html>

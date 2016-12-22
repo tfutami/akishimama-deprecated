@@ -8,6 +8,10 @@ body {
     padding : 0px 0px 0px 15px;
 }
 
+.navbar-header {
+    width: 100%;
+}
+
 .padding-top {
     padding-top : 20px;
 }
@@ -16,9 +20,9 @@ body {
     background-color: #9F8DC6;
 }
 
-
 #brand-logo {
     height : 100%;
+    padding : 12px;
 }
 
 html {

@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>太陽こども病院</title>
-    <!-- 実際に実行する際はlayout.htmlを参照するのでここはthymeleafの設定を入れません。 -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css"  />
-    <link href="../static/css/common.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../static/assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}" />
+    <link href="../static/assets/css/common.css" th:href="@{/assets/css/common.css}" rel="stylesheet" />
 </head>
 <body>
 <div id="layout-root" layout:fragment="layout-content">
