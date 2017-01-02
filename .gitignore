@@ -2,5 +2,5 @@
 .gradle
 .idea
 build
-
 src/main/resources/application-local.yml
+*.iml
