@@ -6,5 +6,6 @@ package com.akishimama.web.constraint;
 public interface ModelAttributeName {
     String USER = "user";
     String HOSPITAL = "hospital";
-    String HOSPITALLIST = "hospitalList";
+    String HOSPITAL_LIST = "hospitalList";
+    String WHATS_NEW_LIST = "whatsNewList";
 }

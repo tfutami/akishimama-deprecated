@@ -25,10 +25,24 @@
         </div>
     </div>
     <div class="container">
-        <div class="padding-top text-center">
+        <div class="text-center">
             <a class="btn btn-default btn-lg btn-block" href="yobou">予防接種情報</a>
         </div>
-    </div><!-- /.container -->
+
+        <hr />
+        <h4>What's new</h4>
+        <div class="list-group">
+            <div class="list-group-item" th:each="whatsNew : ${whatsNewList}" th:object="${whatsNew}">
+                <h4 class="list-group-item-heading">
+                    <strong th:text="*{title}">What's new title</strong>
+                    <small class="pull-right" th:text="*{formattedPostedAt}">YYYY/MM/DD</small>
+                </h4>
+                <p class="list-group-item-text" th:text="*{content}">
+                    What's new content.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
