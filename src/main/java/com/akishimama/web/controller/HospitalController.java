@@ -2,7 +2,9 @@ package com.akishimama.web.controller;
 
 import com.akishimama.web.constraint.ModelAttributeName;
 import com.akishimama.web.domain.Hospital;
+import com.akishimama.web.domain.Vaccine;
 import com.akishimama.web.repository.HospitalRepository;
+import com.akishimama.web.repository.VaccineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class HospitalController {
 
     @Autowired
     private HospitalRepository hospitalRepository;
+
+    @Autowired
+    private VaccineRepository vaccineRepository;
 
     @RequestMapping(
             value = "/{hospitalId}",

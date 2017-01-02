@@ -2,10 +2,8 @@ package com.akishimama.web.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by sat8bit on 2016/12/26.
@@ -13,11 +11,24 @@ import javax.persistence.Id;
 @Data
 @Entity
 public class Hospital {
-    @GeneratedValue
     @Id
     private Integer hospitalId;
 
     private String name;
 
     private String address;
+
+    private Boolean reservation;
+
+    @Column(length = 4096)
+    private String info;
+
+    @Column(length = 4096)
+    private String vaccineInfo;
+
+    @Column(length = 4096)
+    private String doctorsInfo;
+
+    @ManyToMany
+    private List<Vaccine> vaccineList;
 }

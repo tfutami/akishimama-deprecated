@@ -18,29 +18,23 @@
 <div id="layout-root" layout:fragment="layout-content">
     <div class="container">
         <div class="page-header">
-            <h3><span th:text="${hospital.name}">太陽こども病院</span>　<small>松原町１−２−１</small></h3>
+            <h3><span th:text="${hospital.name}">太陽こども病院</span>　<small><span th:text="${hospital.address}">松原町１−２−１</span></small></h3>
         </div>
         <div class="jumbotron">
             <h5><b>取り扱いワクチン</b></h5>
-            <ul>
-                <li>ヒブ</li>
-                <li>小児肺炎球菌</li>
-                <li>四種混合</li>
-                <li>不活化ポリオ</li>
-                <li>三種混合</li>
-                <li>BCG</li>
-                <li>麻しん・風しん混合</li>
-                <li>水痘</li>
-                <li>日本脳炎</li>
-                <li>二種混合</li>
+            <ul th:each="vaccine : ${hospital.vaccineList}">
+                <li th:text="${vaccine.name}">ヒブ</li>
             </ul>
             <h5><b>予約</b></h5>
             <ul>
-                <li>不可</li>
+                <div th:switch="${hospital.reservation}">
+                    <li th:case="true">可</li>
+                    <li th:case="false">不可</li>
+                </div>
             </ul>
             <h5><b>接種後のケア</b></h5>
             <ul>
-                <li>特になし。症状が出た場合は別途受診。</li>
+                <li><span th:text="${hospital.vaccineInfo}">特になし。症状が出た場合は別途受診。</span></li>
             </ul>
         </div>
         <div>
@@ -72,8 +66,7 @@
                 </div>
                 <div class="panel-body">
                     <ul>
-                        <li>xxxx</li>
-                        <li>xxxx</li>
+                        <li><span th:text="${hospital.info}">xxxx</span></li>
                     </ul>
                 </div>
             </div>
@@ -83,8 +76,7 @@
                 </div>
                 <div class="panel-body">
                     <ul>
-                        <li>xxxx</li>
-                        <li>xxxx</li>
+                        <li><span th:text="${hospital.doctorsInfo}">xxxx</span></li>
                     </ul>
                 </div>
             </div>
