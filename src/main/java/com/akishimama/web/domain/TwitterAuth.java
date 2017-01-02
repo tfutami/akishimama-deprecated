@@ -1,4 +1,4 @@
-package com.akishimama.domain;
+package com.akishimama.web.domain;
 
 import lombok.Data;
 

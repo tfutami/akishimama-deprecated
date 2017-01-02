@@ -1,0 +1,10 @@
+spring:
+  social:
+    twitter:
+      appId: ""
+      appSecret: ""
+  datasource:
+    url: "jdbc:mysql://localhost:3306/akishimama"
+    driverClassName: "com.mysql.cj.jdbc.Driver"
+    username: ""
+    password: ""

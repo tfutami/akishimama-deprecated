@@ -1,4 +1,4 @@
-package com.akishimama.constraint;
+package com.akishimama.web.constraint;
 
 /**
  * Created by sat8bit on 2016/12/22.

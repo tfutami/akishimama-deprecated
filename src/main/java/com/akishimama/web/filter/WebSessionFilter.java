@@ -1,11 +1,12 @@
-package com.akishimama.web;
+package com.akishimama.web.filter;
 
-import com.akishimama.domain.Session;
-import com.akishimama.domain.SessionRepository;
+import com.akishimama.web.domain.WebSession;
+import com.akishimama.web.repository.WebSessionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -14,43 +15,62 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Component
-public class SessionHandler extends OncePerRequestFilter {
+public class WebSessionFilter extends OncePerRequestFilter {
 
     private static final String SID_COOKIE_NAME = "sid";
 
-    private static final String SESS_ATTR_NAME = "session";
+    public static final String SESS_ATTR_NAME = "session";
+
+    public static final List<String> NO_SESSION_PATH_PREFIXES =  Collections.unmodifiableList(Arrays.asList(
+            "/assets",
+            "/error"
+    ));
 
     @Autowired
-    private SessionRepository sessionRepository;
+    private WebSessionRepository webSessionRepository;
 
+    @Transactional
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if (request.getServletPath().startsWith("/assets/")) {
+        if (isExcludePath(request.getServletPath())) {
             filterChain.doFilter(request, response);
             return;
         }
 
         Optional<String> sessionId = getSessionIdByCookie(request);
 
-        Session session = null;
+        WebSession webSession = null;
         if (sessionId.isPresent()) {
-            session = sessionRepository.findOne(sessionId.get());
+            webSession = webSessionRepository.findOne(sessionId.get());
         }
 
-        if (session == null) {
-            session = new Session();
-            session.setSessionId(RandomStringUtils.randomAlphanumeric(12));
-            sessionRepository.save(session);
+        if (webSession == null) {
+            webSession = new WebSession();
+            webSession.setSessionId(RandomStringUtils.randomAlphanumeric(16));
+            webSessionRepository.save(webSession);
         }
 
-        request.setAttribute(SESS_ATTR_NAME, session);
+        request.setAttribute(SESS_ATTR_NAME, webSession);
 
-        response.addCookie(createCookie(session.getSessionId()));
+        response.addCookie(createCookie(webSession.getSessionId()));
         filterChain.doFilter(request, response);
+    }
+
+    private boolean isExcludePath(String path) {
+        for(String pattern : NO_SESSION_PATH_PREFIXES) {
+            if (path.startsWith(pattern)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private Cookie createCookie(String sessionId) {
@@ -69,16 +89,4 @@ public class SessionHandler extends OncePerRequestFilter {
 
         return Optional.empty();
     }
-
-    public Session getSession(HttpServletRequest request) {
-        Session session = (Session) request.getAttribute(SESS_ATTR_NAME);
-
-        if (session == null) {
-            throw new IllegalArgumentException(
-                    "HttpServletRequest has no session attribute.");
-        }
-
-        return session;
-    }
-
 }
