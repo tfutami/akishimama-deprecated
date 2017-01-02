@@ -1,5 +1,6 @@
 package com.akishimama.web.controller;
 
+import com.akishimama.web.domain.Hospital;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,9 @@ public class HospitalController {
             method = RequestMethod.GET
     )
     public String doGet(){
+
+        Hospital hospital = new Hospital();
+
         return "hospital";
     }
 }

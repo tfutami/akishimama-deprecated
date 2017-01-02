@@ -1,7 +1,12 @@
 package com.akishimama.web.controller;
 
-import com.akishimama.domain.*;
-import com.akishimama.web.SessionHandler;
+import com.akishimama.web.domain.TwitterAuth;
+import com.akishimama.web.domain.User;
+import com.akishimama.web.domain.WebSession;
+import com.akishimama.web.repository.TwitterAuthRepository;
+import com.akishimama.web.repository.UserRepository;
+import com.akishimama.web.repository.WebSessionRepository;
+import com.akishimama.web.filter.WebSessionFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.ConnectionRepository;
@@ -32,10 +37,7 @@ public class AuthController {
     private TwitterAuthRepository twitterAuthRepository;
 
     @Autowired
-    private SessionHandler sessionHandler;
-
-    @Autowired
-    private SessionRepository sessionRepository;
+    private WebSessionRepository webSessionRepository;
 
     @Transactional
     @RequestMapping(
@@ -69,17 +71,9 @@ public class AuthController {
             log.info("we know him. he is {}", twitterAuth.getUser());
         }
 
-        Session session = sessionHandler.getSession(request);
-
-        Session storedSession = sessionRepository.findOne(session.getSessionId());
-
-        if (storedSession != null) {
-            storedSession.setUser(twitterAuth.getUser());
-        }
-        else {
-            session.setUser(twitterAuth.getUser());
-            sessionRepository.save(session);
-        }
+        WebSession webSession = (WebSession) request.getAttribute(WebSessionFilter.SESS_ATTR_NAME);
+        WebSession storedWebSession = webSessionRepository.findOne(webSession.getSessionId());
+        storedWebSession.setUser(twitterAuth.getUser());
 
         return "redirect:/";
     }
