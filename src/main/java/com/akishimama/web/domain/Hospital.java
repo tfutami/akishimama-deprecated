@@ -1,5 +1,7 @@
 package com.akishimama.web.domain;
 
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 /**
  * Created by sat8bit on 2016/12/26.
  */
+@Data
 @Entity
 public class Hospital {
     @GeneratedValue

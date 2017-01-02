@@ -81,6 +81,9 @@ public class WebSessionFilter extends OncePerRequestFilter {
     }
 
     private Optional<String> getSessionIdByCookie(HttpServletRequest request) {
+        if (request.getCookies() == null){
+            return Optional.empty();
+        }
         for(Cookie cookie : request.getCookies()) {
             if (SID_COOKIE_NAME.equals(cookie.getName())) {
                 return Optional.of(cookie.getValue());
