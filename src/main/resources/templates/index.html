@@ -30,16 +30,18 @@
         </div>
 
         <hr />
-        <h4>What's new</h4>
-        <div class="list-group">
-            <div class="list-group-item" th:each="whatsNew : ${whatsNewList}" th:object="${whatsNew}">
-                <h4 class="list-group-item-heading">
-                    <strong th:text="*{title}">What's new title</strong>
-                    <small class="pull-right" th:text="*{formattedPostedAt}">YYYY/MM/DD</small>
-                </h4>
-                <p class="list-group-item-text" th:text="*{content}">
-                    What's new content.
-                </p>
+        <h4><font color="9F8DC6">What's new</font></h4>
+        <div class="panel panel-default" th:each="whatsNew : ${whatsNewList}" th:object="${whatsNew}">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <strong th:text="*{title}">募集情報追加しました</strong>
+                </h3>
+                <h6 class="panel-title">
+                    <small th:text="*{formattedPostedAt}">YYYY/MM/DD</small>
+                </h6>
+            </div>
+            <div class="panel-body" th:text="*{content}">
+                Panel content
             </div>
         </div>
     </div>
