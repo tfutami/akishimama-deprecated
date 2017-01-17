@@ -22,8 +22,8 @@
         </div>
         <div class="jumbotron">
             <h5><b>取り扱いワクチン</b></h5>
-            <ul th:each="vaccine : ${hospital.vaccineList}">
-                <li th:text="${vaccine.name}">ヒブ</li>
+            <ul>
+                <li th:each="vaccine : ${hospital.vaccineList}" th:text="${vaccine.name}">ヒブ</li>
             </ul>
             <h5><b>予約</b></h5>
             <ul>
