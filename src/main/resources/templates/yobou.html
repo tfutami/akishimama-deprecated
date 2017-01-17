@@ -50,12 +50,19 @@
             詳細ページに、みなさまからの情報をまとめております。
         </div>
         <table class="table">
-            <tr><th>医療機関名</th><th>所在地</th></tr>
-            <tr><td><a href="yobou/hospital">太陽こども病院</a></td><td>松原町１−２−１</td></tr>
-            <tr><td>まことクリニック</td><td>松原町２−９−１</td></tr>
-            <tr><td>松原町クリニック</td><td>松原町４−２−１</td></tr>
-            <tr><td>田中団地診療所</td><td>田中町３−５−１７−１０３</td></tr>
-            <tr><td>大久保内科クリニック</td><td>拝島町２−１６−１７</td></tr>
+            <thead>
+                <tr><th>医療機関名</th><th>所在地</th></tr>
+            </thead>
+            <tbody th:remove="all-but-first">
+                <tr th:each="hospital : ${hospitalList}">
+                    <td ><a th:text="${hospital.name}" th:href="@{/yobou/hospital/{hospitalId}(hospitalId=${hospital.hospitalId})}">太陽こども病院</a></td>
+                    <td th:text="${hospital.address}">松原町１−２−１</td>
+                </tr>
+                <tr><td>まことクリニック</td><td>松原町２−９−１</td></tr>
+                <tr><td>松原町クリニック</td><td>松原町４−２−１</td></tr>
+                <tr><td>田中団地診療所</td><td>田中町３−５−１７−１０３</td></tr>
+                <tr><td>大久保内科クリニック</td><td>拝島町２−１６−１７</td></tr>
+            </tbody>
         </table>
     </div>
 </div>
