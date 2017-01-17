@@ -29,7 +29,7 @@ public class YobouController {
     public String doGet(Model model){
 
         List<Hospital> hospitalList = hospitalRepository.findAll();
-        model.addAttribute(ModelAttributeName.HOSPITALLIST, hospitalList);
+        model.addAttribute(ModelAttributeName.HOSPITAL_LIST, hospitalList);
 
         return "yobou";
     }
