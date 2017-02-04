@@ -25,6 +25,11 @@ body {
     padding : 12px;
 }
 
+.nickname {
+    color : #FFF;
+}
+
+
 html {
   min-height: 100%;
   position: relative;
